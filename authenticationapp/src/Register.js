@@ -91,13 +91,13 @@ const Register = () => {
           </span>
         </label>
         <input
-        type="text"
-        id="passworld"
+        type="password"
+        id="password"
         autoComplete="off"
         onChange={(e)=> setPwd(e.target.value)}
         required
         aria-invalid={validPwd? "false":"true"}
-        aria-describedby="uninote"
+        aria-describedby="pwdnote"
         onFocus={()=>setPwdFocus(true)}
         onBlur={()=>setPwdFocus(false)}
         />
@@ -111,6 +111,32 @@ const Register = () => {
           <span aria-label="dollar sing">$</span><span aria-label="percent">%</span>
         </p>
         
+        <label htmlFor="confirm_pwd">
+          Confirm Password:
+          <span className={validMatch? "valid": "hide"}>
+            <FontAwesomeIcon icon={faCheck}/>
+            </span>
+          <span className={validMatch || !matchPwd ? "hide":"invalid"}>
+            <FontAwesomeIcon icon ={faTimes}/>
+          </span>
+        </label>
+        <input
+        type="password"
+        id="confirm_pwd"
+        autoComplete="off"
+        onChange={(e)=> setMathcPwd(e.target.value)}
+        required
+        aria-invalid={validMatch? "false":"true"}
+        aria-describedby="confirmnote"
+        onFocus={()=>setPwdFocus(true)}
+        onBlur={()=>setPwdFocus(false)}
+        />
+        <p id="confirmnote" className={matchFocus && matchPwd && !validMatch ? "instructions":"offscreen"}>
+          <FontAwesomeIcon icon={faInfoCircle}/>
+          Must match the first password input field.       
+         
+         
+        </p>
       </form>
 
     </section>
