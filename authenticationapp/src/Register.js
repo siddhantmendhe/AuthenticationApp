@@ -49,11 +49,24 @@ const Register = () => {
 
   }, [user,pwd, matchPwd])
 
+  const handleSubmit=(e)=>{
+    e.preventDefault();
+    // if button ebabled with JS hack
+    const v1= USER_REGEX.test(user);
+    const v2=PWD_REGEX.test(pwd);
+    if(!v1||!v2){
+      setErrMsg("Invalid Entry")
+      return;
+    }
+    setSuccess(true);
+
+  }
+
   return (
     <section>
       <p ref={errRef} className={errMsg?"errmsg": "offscreen"} aria-live="assertive">{errMsg}</p>
       <h1> Register</h1>
-      <form>
+      <form onSubmit={handleSubmit}>
         <label htmlFor="username">
           Username:
           <span className={validName? "valid": "hide"}>
@@ -138,6 +151,13 @@ const Register = () => {
          
         </p>
         <button disabled={!validName || !validPwd || !validMatch? true: false}>Sign Up</button>
+        <p>
+                        Already registered?<br />
+                        <span className="line">
+                            {/*put router link here*/}
+                            <a href="#">Sign In</a>
+                        </span>
+                    </p>
       </form>
 
     </section>
