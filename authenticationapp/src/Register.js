@@ -101,7 +101,7 @@ const Register = () => {
         onFocus={()=>setPwdFocus(true)}
         onBlur={()=>setPwdFocus(false)}
         />
-        <p id="pwdnote" className={pwdFocus && pwd && !validPwd ? "instructions":"offscreen"}>
+        <p id="pwdnote" className={pwdFocus && !validPwd ? "instructions":"offscreen"}>
           <FontAwesomeIcon icon={faInfoCircle}/>
           8 to 24 characters.<br/>
           Must include uppercase and lowercase letters, a number and a special character. <br/>
@@ -113,7 +113,7 @@ const Register = () => {
         
         <label htmlFor="confirm_pwd">
           Confirm Password:
-          <span className={validMatch? "valid": "hide"}>
+          <span className={validMatch && matchPwd? "valid": "hide"}>
             <FontAwesomeIcon icon={faCheck}/>
             </span>
           <span className={validMatch || !matchPwd ? "hide":"invalid"}>
@@ -128,10 +128,10 @@ const Register = () => {
         required
         aria-invalid={validMatch? "false":"true"}
         aria-describedby="confirmnote"
-        onFocus={()=>setPwdFocus(true)}
-        onBlur={()=>setPwdFocus(false)}
+        onFocus={()=>setMatchFocus(true)}
+        onBlur={()=>setMatchFocus(false)}
         />
-        <p id="confirmnote" className={matchFocus && matchPwd && !validMatch ? "instructions":"offscreen"}>
+        <p id="confirmnote" className={matchFocus && !validMatch ? "instructions":"offscreen"}>
           <FontAwesomeIcon icon={faInfoCircle}/>
           Must match the first password input field.       
          
